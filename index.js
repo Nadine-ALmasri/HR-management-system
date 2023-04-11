@@ -16,7 +16,7 @@ function Employee (employeeId,fullName,department,level,salary){
    allEmployee.push(this)
     }
 
-    Employee.prototype.rand=function() {
+    Employee.prototype.rand=function() {//create function to genarate ranbom id number
 
         let theLevel = this.level;
         if (theLevel == "Senior") {
