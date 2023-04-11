@@ -64,16 +64,39 @@ function Employee (employeeId,fullName,department,level,salary){
 
 
         const pE2 = document.createElement('p');
-        pE2.textContent =`The Id Is: ${this.employeeId}`;
+        pE2.textContent =`The Id Is: ${this.employeeId} The expected salary is ${this.theNetSalary}`
          divEl.appendChild(pE2);
        
 n++
 
     }
 }
+//................................................
 
+Employee.prototype.rand=function() {// function to genarate random salary
 
+    let theLevel= this.level;
+        if(theLevel=="Senior"){
+            this.salary=(Math.floor(Math.random() * (2000-1500 + 1) ) + 1500) ;
+    
+     }
+        else if (theLevel=="Mid-Senior"){
+            this.salary=(Math.floor(Math.random() * (1500-1000 + 1) ) + 1000) ;
+           }else{
+            this.salary=(  Math.floor(Math.random() * (1000-500 + 1) ) +500 );
+       
+         } console.log(this.salary)
+         return(this.salary)}
 
+        
+    Employee.prototype.show= function(){//function to print the name and net salary at home page
+  
+     console.log(this.salary);
+    
+     this.theNetSalary = this.salary - this.salary * (7.5 / 100);
+     return this.theNetSalary;
+   // document.write(`salary after tax is:(${theNetSalary})<br>`)}
+    }
     
     
     
@@ -81,8 +104,7 @@ n++
     
     
     
-    
-
+//................................................
 
 function rann(arr){//function to genarate random id number and store it in array
    var arr=[]
@@ -119,8 +141,11 @@ let fullName= event.target.aName.value;
   let department = event.target.dropdown.value;
   let lavel = event.target.lev.value;
 let ImageUrl
-let newEmployee= new Employee(employeeId,fullName,department,lavel,"200",ImageUrl);
-newEmployee.render()
+let salary=this.salary;
+let newEmployee= new Employee(employeeId,fullName,department,lavel,ImageUrl, salary);
 
-  
+console.log(salary)
+newEmployee.rand()
+newEmployee.show()
+  newEmployee.render()
 }
