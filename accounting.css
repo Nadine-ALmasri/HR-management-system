@@ -56,3 +56,25 @@ header {
         footer p {
             display: inline;
         }
+        main{
+            display: flex;
+        }
+      table {
+     margin-left: 350px;
+     margin-top: 100px;
+ border-collapse: collapse;
+padding: 5px;
+background-color: #d1a7a7;
+
+
+      }
+      table th {
+        border: solid;
+        padding: 10px;
+       
+      }
+      table, th, td ,tr{
+        border: 1px solid;
+       text-align: center;
+       padding: 10px;
+      }
