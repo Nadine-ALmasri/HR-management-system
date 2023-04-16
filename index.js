@@ -42,23 +42,32 @@ Employee.prototype.show = function () {
 
     document.write(`salary after tax is:(${theNetSalary})<br>`);
 }
-Employee.prototype.render = function () {
-    {//refactor the render prototype function to render each employee information 
+        
+      function  render () {
+    //refactor the render prototype function to render each employee information 
+
+    if (allEmployee == null) {
+        allEmployee = [];}
+        else{
+            for (let i = 0; i <allEmployee.length; i++) {
+
+
+
         const container = document.getElementById('container');
         const divEl = document.createElement('div');
         container.appendChild(divEl);
         const imgEl = document.createElement('img');
         divEl.appendChild(imgEl);
-        imgEl.src = this.ImageUrl;
+        imgEl.src = allEmployee[i].ImageUrl;
         imgEl.width = 150
         const h1El = document.createElement('h1');
-        h1El.textContent = ` The Employee Name : ${this.fullName}`;
+        h1El.textContent = allEmployee[i].fullName;
         divEl.appendChild(h1El);
         const h2El = document.createElement('h3');
-        h2El.textContent = `The Department Is : ${this.department}`;
+        h2El.textContent = allEmployee[i].department
         divEl.appendChild(h2El);
         const pEl = document.createElement('p');
-        pEl.textContent = `The Level Is: ${this.level}`;
+        pEl.textContent = allEmployee[i].lavel
         divEl.appendChild(pEl);
 
 
@@ -66,13 +75,13 @@ Employee.prototype.render = function () {
 
 
         const pE2 = document.createElement('p');
-        pE2.textContent = `The Id Is: ${this.employeeId} The expected salary is ${this.theNetSalary}`
+        pE2.textContent = `The Id Is: ${allEmployee[i].employeeId} The expected salary is ${allEmployee[i].salary}`
         divEl.appendChild(pE2);
 
-        n++
+      
 
     }
-}
+}}
 //................................................
 
 Employee.prototype.rand = function () {// function to genarate random salary
@@ -151,7 +160,7 @@ function submitHandler(event) {
 
     newEmployee.rand()
     newEmployee.show()
-    newEmployee.render()
+    render()
 
     let jsonArr = JSON.stringify(allEmployee);
     localStorage.setItem("allEmployee", jsonArr);
@@ -162,9 +171,5 @@ function submitHandler(event) {
     let jsonArr = localStorage.getItem('allEmployee');
     let dataFromStorage = JSON.parse(jsonArr);
     allEmployee = dataFromStorage;
-    function render(arr) {
-        ///check if arr null
-        if (allEmployee == null) {
-            allEmployee = [];
-        }}
-        render(allEmployee)
+   
+        render()
